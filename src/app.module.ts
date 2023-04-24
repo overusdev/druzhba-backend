@@ -12,6 +12,10 @@ import { join } from 'path';
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      cors: {
+        credentials: true,
+        origin: true,
+      },
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
