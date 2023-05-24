@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PetsModule } from './pets/pets.module';
 import { join } from 'path';
 
+console.log(process.env.MYSQL_DB_USER);
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -17,13 +18,24 @@ import { join } from 'path';
         origin: true,
       },
     }),
+    // TypeOrmModule.forRoot({
+    //   type: 'mysql',
+    //   host: 'localhost',
+    //   port: 3306,
+    //   username: 'root',
+    //   password: '1955',
+    //   database: 'test_db',
+    //   entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+    //   synchronize: true,
+    //   logging: ['query', 'error'],
+    // }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.MYSQL_HOST,
       port: 3306,
-      username: 'root',
-      password: '1955',
-      database: 'test_db',
+      username: process.env.MYSQL_DB_USER,
+      password: process.env.MYSQL_DB_PASSWORD,
+      database: process.env.MYSQL_DB_NAME,
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
       logging: ['query', 'error'],
