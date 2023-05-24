@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AppController } from './app.controller';
@@ -7,7 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PetsModule } from './pets/pets.module';
 import { join } from 'path';
 
-console.log(process.env.MYSQL_DB_USER);
+console.log('process.env.MYSQL_DB_USER', process.env.MYSQL_DB_USER);
 @Module({
   imports: [
     GraphQLModule.forRoot({
@@ -17,6 +18,9 @@ console.log(process.env.MYSQL_DB_USER);
         credentials: true,
         origin: true,
       },
+    }),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
     }),
     // TypeOrmModule.forRoot({
     //   type: 'mysql',
