@@ -8,9 +8,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PetsModule } from './pets/pets.module';
 import { join } from 'path';
 
-console.log('process.env.MYSQL_DB_USER', process.env.MYSQL_DB_USER);
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+    }),
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
@@ -18,21 +20,8 @@ console.log('process.env.MYSQL_DB_USER', process.env.MYSQL_DB_USER);
         credentials: true,
         origin: true,
       },
+      playground: process.env.NODE_ENV === 'production' ? false : true,
     }),
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-    }),
-    // TypeOrmModule.forRoot({
-    //   type: 'mysql',
-    //   host: 'localhost',
-    //   port: 3306,
-    //   username: 'root',
-    //   password: '1955',
-    //   database: 'test_db',
-    //   entities: [join(__dirname, '**', '*.entity.{ts,js}')],
-    //   synchronize: true,
-    //   logging: ['query', 'error'],
-    // }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.MYSQL_HOST,
