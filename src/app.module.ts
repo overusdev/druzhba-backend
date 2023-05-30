@@ -36,7 +36,7 @@ console.log('process.env.MYSQL_DB_USER', process.env.MYSQL_DB_USER);
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.MYSQL_HOST,
-      port: 3306,
+      port: Number(process.env.MYSQL_DB_PORT),
       username: process.env.MYSQL_DB_USER,
       password: process.env.MYSQL_DB_PASSWORD,
       database: process.env.MYSQL_DB_NAME,
