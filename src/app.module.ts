@@ -8,6 +8,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PetsModule } from './pets/pets.module';
 import { join } from 'path';
 
+console.log('process.env.NODE_ENV', process.env.NODE_ENV);
+
 @Module({
   imports: [
     ConfigModule.forRoot({
