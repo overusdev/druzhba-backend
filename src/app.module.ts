@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PetsModule } from './pets/pets.module';
 import { join } from 'path';
+import { UsersModule } from './users/users.module';
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 
@@ -36,6 +37,7 @@ console.log('process.env.NODE_ENV', process.env.NODE_ENV);
       logging: ['query', 'error'],
     }),
     PetsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

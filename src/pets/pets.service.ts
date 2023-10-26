@@ -13,13 +13,23 @@ export class PetsService {
 
     return this.petsRepository.save(newPet); // insert
   }
+
   async findAll(): Promise<Pet[]> {
     return this.petsRepository.find(); // SELECT * pets
-    // const pet = new Pet();
+  }
 
-    // pet.id = 1;
-    // pet.name = 'Mamboo';
+  async findOne(id): Promise<Pet> {
+    // return this.petsRepository.findOneOrFail(id); // SELECT pets by id
+    return this.petsRepository.findOneBy({ id: id }); // SELECT pets by id
+  }
 
-    // return [pet];
+  async updatePetName(petId, newName) {
+    // const allPets = this.petsRepository.find();
+    const allPets = await this.findAll();
+    const [pet] = allPets.filter((item) => item.id === petId);
+
+    pet.name = newName;
+
+    return pet;
   }
 }
