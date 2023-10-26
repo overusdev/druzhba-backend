@@ -2,6 +2,7 @@ import { Args, Mutation, Query, Resolver, Int } from '@nestjs/graphql';
 import { Pet } from './pets.entity';
 import { PetsService } from './pets.service';
 import { CreatePetInput } from './dto/create-pet.input';
+import { UpdatePetInput } from './dto/update-pet.input';
 
 @Resolver()
 export class PetsResolver {
@@ -18,14 +19,21 @@ export class PetsResolver {
   }
 
   @Mutation((returns) => Pet)
-  createPet(
+  async createPet(
     @Args('createPetInput') createPetInput: CreatePetInput,
   ): Promise<Pet> {
-    return this.petsService.createPet(createPetInput);
+    return await this.petsService.create(createPetInput);
   }
 
   @Mutation((returns) => Pet)
-  async updatePetName(@Args({ name: 'petId', type: () => Int }) petId: number) {
-    return this.petsService.updatePetName(petId, 'Mom');
+  async updatePet(
+    @Args('updatePet') updatePetInput: UpdatePetInput,
+  ): Promise<Pet> {
+    return await this.petsService.update(updatePetInput);
+  }
+
+  @Mutation((returns) => Pet)
+  async removePet(@Args('id', { type: () => Int }) id: number) {
+    return await this.petsService.remove(id);
   }
 }
