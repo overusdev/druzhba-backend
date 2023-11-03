@@ -36,4 +36,38 @@ export class PetsResolver {
   async removePet(@Args('id', { type: () => Int }) id: number) {
     return await this.petsService.remove(id);
   }
+
+  @Mutation(() => [Pet])
+  async removeManyPets(
+    @Args({ name: 'input', type: () => [UpdatePetInput] })
+    input: UpdatePetInput[],
+  ) {
+    console.log('UpdatePetInput', input);
+    for await (const key of input) {
+      console.log(key.id);
+      this.petsService.remove(key.id);
+    }
+  }
+
+  @Mutation(() => Pet)
+  async removePets(@Args('id', { type: () => [Number] }) id: string[]) {
+    console.log(id);
+    for await (const key of id) {
+      console.log(key);
+      // this.petsService.remove(key);
+    }
+    return true;
+  }
+
+  // @Mutation((returns) => Pet)
+  // async removePets(
+  //   @Args('deletePets') updatePetInput: UpdatePetInput,
+  // ): Promise<Pet> {
+  //   return await this.petsService.deleteMultiple(updatePetInput);
+  // }
+
+  // @Mutation(() => Pet)
+  // async removePets(@Args('where') where: UpdatePetInput) {
+  //   return await this.petsService.deleteManyPets(where);
+  // }
 }

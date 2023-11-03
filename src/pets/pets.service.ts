@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Pet } from './pets.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreatePetInput } from './dto/create-pet.input';
 import { UpdatePetInput } from './dto/update-pet.input';
 
@@ -23,9 +23,10 @@ export class PetsService {
     return this.petsRepository.findOneBy({ id: id }); // SELECT pets by id
   }
 
-  async remove(id: number): Promise<number> {
+  async remove(id: number): Promise<number | string> {
     await this.petsRepository.delete({ id: id });
-    return id;
+    const message = `Item with id ${id} was removed`;
+    return message;
   }
 
   async update(updatePetInput: UpdatePetInput): Promise<Pet> {
@@ -36,4 +37,17 @@ export class PetsService {
 
     return await this.findOne(updatePetInput.id);
   }
+
+  // deleteMany(input: UpdatePetInput[]): Promise<Pet[]> {
+  //   return this.petsRepository.delete(input);
+  // }
+
+  // async deleteManyPets(where: UpdatePetInput): Promise<Pet> {
+  //   try {
+  //     return await this.petsRepository.delete({ where: id });
+  //     // return await this.prisma.user.deleteMany({ where });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 }
