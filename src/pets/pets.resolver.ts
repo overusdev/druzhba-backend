@@ -9,8 +9,9 @@ export class PetsResolver {
   constructor(private petsService: PetsService) {}
 
   @Query((returns) => [Pet])
-  pets(): Promise<Pet[]> {
-    return this.petsService.findAll();
+  // pets(): Promise<Pet[]> {
+  pets(@Args('take', { type: () => Int }) take: number): Promise<Pet[]> {
+    return this.petsService.findAll(take);
   }
 
   @Query((returns) => Pet)
@@ -49,15 +50,15 @@ export class PetsResolver {
     }
   }
 
-  @Mutation(() => Pet)
-  async removePets(@Args('id', { type: () => [Number] }) id: string[]) {
-    console.log(id);
-    for await (const key of id) {
-      console.log(key);
-      // this.petsService.remove(key);
-    }
-    return true;
-  }
+  // @Mutation(() => Pet)
+  // async removePets(@Args('id', { type: () => [Number] }) id: string[]) {
+  //   console.log(id);
+  //   for await (const key of id) {
+  //     console.log(key);
+  //     // this.petsService.remove(key);
+  //   }
+  //   return true;
+  // }
 
   // @Mutation((returns) => Pet)
   // async removePets(

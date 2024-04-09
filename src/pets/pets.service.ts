@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Pet } from './pets.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { FindManyOptions, In, Repository } from 'typeorm';
 import { CreatePetInput } from './dto/create-pet.input';
 import { UpdatePetInput } from './dto/update-pet.input';
 
@@ -15,8 +15,17 @@ export class PetsService {
     return this.petsRepository.save(newPet); // insert
   }
 
-  async findAll(): Promise<Pet[]> {
-    return this.petsRepository.find(); // SELECT * pets
+  // async findAll(): Promise<Pet[]> {
+  //   return this.petsRepository.find(); // SELECT * pets
+  // }
+  async findAll(take: number): Promise<Pet[]> {
+    const getQuery = {
+      take,
+      order: {
+        id: 'DESC',
+      },
+    };
+    return this.petsRepository.find(getQuery as FindManyOptions); // SELECT * pets
   }
 
   async findOne(id): Promise<Pet> {
