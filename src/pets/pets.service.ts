@@ -38,6 +38,12 @@ export class PetsService {
     return message;
   }
 
+  async removeByIds(ids: number[]): Promise<number | string> {
+    await this.petsRepository.delete([...ids]);
+    const message = `Item with id ${ids} was removed`;
+    return message;
+  }
+
   async update(updatePetInput: UpdatePetInput): Promise<Pet> {
     await this.petsRepository.update(
       { id: updatePetInput.id },

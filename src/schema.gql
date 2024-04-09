@@ -30,6 +30,7 @@ type Mutation {
   updatePet(updatePet: UpdatePetInput!): Pet!
   removePet(id: Int!): Pet!
   removeManyPets(input: [UpdatePetInput!]!): [Pet!]!
+  removePets(ids: [Int!]!): Pet!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!

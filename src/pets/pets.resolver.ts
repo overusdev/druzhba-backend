@@ -50,25 +50,8 @@ export class PetsResolver {
     }
   }
 
-  // @Mutation(() => Pet)
-  // async removePets(@Args('id', { type: () => [Number] }) id: string[]) {
-  //   console.log(id);
-  //   for await (const key of id) {
-  //     console.log(key);
-  //     // this.petsService.remove(key);
-  //   }
-  //   return true;
-  // }
-
-  // @Mutation((returns) => Pet)
-  // async removePets(
-  //   @Args('deletePets') updatePetInput: UpdatePetInput,
-  // ): Promise<Pet> {
-  //   return await this.petsService.deleteMultiple(updatePetInput);
-  // }
-
-  // @Mutation(() => Pet)
-  // async removePets(@Args('where') where: UpdatePetInput) {
-  //   return await this.petsService.deleteManyPets(where);
-  // }
+  @Mutation(() => Pet)
+  async removePets(@Args('ids', { type: () => [Int] }) ids: number[]) {
+    return this.petsService.removeByIds(ids);
+  }
 }
