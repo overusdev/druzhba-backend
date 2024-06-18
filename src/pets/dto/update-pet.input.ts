@@ -3,7 +3,7 @@ import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdatePetInput extends PartialType(CreatePetInput) {
-  @Field(() => Int, { nullable: false })
+  @Field(() => Int, { nullable: true })
   id: number;
 
   @Field()

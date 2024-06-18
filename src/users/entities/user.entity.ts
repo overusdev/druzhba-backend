@@ -8,30 +8,38 @@ export class User {
     type: 'bigint',
     name: 'user_id',
   })
-  @Field((type) => Int)
+  @Field((type) => Int, { nullable: true })
   id: number;
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   name: string;
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   surname: string;
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   patronymic: string;
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   isAdmin: boolean;
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   area: string;
 
-  @Column()
-  @Field()
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   phone: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  password: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  role: string;
 }

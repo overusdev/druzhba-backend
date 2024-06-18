@@ -8,12 +8,12 @@ export class Pet {
     type: 'bigint',
     name: 'pet_id',
   })
-  @Field(type => Int)
+  @Field((type) => Int, { nullable: true })
   id: number;
 
   @Column()
-  @Field()
-  name: string;
+  @Field({ nullable: true })
+  name?: string;
 
   @Column({ nullable: true })
   @Field({ nullable: true })

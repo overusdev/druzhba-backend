@@ -1,28 +1,56 @@
 import { Injectable } from '@nestjs/common';
+import { User } from './entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { FindManyOptions, In, Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 
-import { User } from './entities/user.entity';
-
 @Injectable()
 export class UsersService {
-  create(createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
+  constructor(
+    @InjectRepository(User) private usersRepository: Repository<User>,
+  ) {}
+
+  create(createUserInput: CreateUserInput): Promise<User> {
+    const newUser = this.usersRepository.create(createUserInput);
+
+    return this.usersRepository.save(newUser);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll(take: number): Promise<User[]> {
+    const getQuery = {
+      take,
+      order: {
+        id: 'DESC',
+      },
+    };
+    return this.usersRepository.find(getQuery as FindManyOptions); // SELECT * users
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id): Promise<User> {
+    return this.usersRepository.findOneBy({ id: id }); // SELECT user by id
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+  async remove(id: number): Promise<number | string> {
+    await this.usersRepository.delete({ id: id });
+    const message = `User with id ${id} was removed`;
+    return message;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async removeByIds(ids: number[]): Promise<number | string> {
+    await this.usersRepository.delete([...ids]);
+    const message = `Users with id ${ids} was removed`;
+    return message;
   }
+
+  async update(updateUserInput: UpdateUserInput): Promise<User> {
+    await this.usersRepository.update(
+      { id: updateUserInput.id },
+      { ...updateUserInput },
+    );
+    return await this.findOne(updateUserInput.id);
+  }
+  // update(id: number, updateUserInput: UpdateUserInput) {
+  //   return `This action updates a #${id} user`;
+  // }
 }

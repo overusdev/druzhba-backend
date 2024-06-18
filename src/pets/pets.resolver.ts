@@ -3,6 +3,8 @@ import { Pet } from './pets.entity';
 import { PetsService } from './pets.service';
 import { CreatePetInput } from './dto/create-pet.input';
 import { UpdatePetInput } from './dto/update-pet.input';
+import { HttpException } from '@nestjs/common/exceptions';
+import { HttpStatus } from '@nestjs/common/enums/http-status.enum';
 
 @Resolver()
 export class PetsResolver {
@@ -33,9 +35,29 @@ export class PetsResolver {
     return await this.petsService.update(updatePetInput);
   }
 
-  @Mutation((returns) => Pet)
+  // @Mutation((returns) => Pet)
+  // async removePet(@Args('id', { type: () => Int }) id: number) {
+  //   await this.petsService.remove(id);
+  //   return 'await this.petsService.remove(id)';
+  // }
+  @Mutation(() => Pet)
   async removePet(@Args('id', { type: () => Int }) id: number) {
-    return await this.petsService.remove(id);
+    try {
+      await this.petsService.remove(id);
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: 'This is a custom message',
+        },
+        HttpStatus.FORBIDDEN,
+        {
+          cause: error,
+        },
+      );
+    } finally {
+      return 'await this.petsService.remove(id)';
+    }
   }
 
   @Mutation(() => [Pet])

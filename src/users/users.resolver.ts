@@ -13,9 +13,9 @@ export class UsersResolver {
     return this.usersService.create(createUserInput);
   }
 
-  @Query(() => [User], { name: 'users' })
-  findAll() {
-    return this.usersService.findAll();
+  @Query((returns) => [User])
+  users(@Args('take', { type: () => Int }) take: number): Promise<User[]> {
+    return this.usersService.findAll(take);
   }
 
   @Query(() => User, { name: 'user' })
@@ -23,9 +23,11 @@ export class UsersResolver {
     return this.usersService.findOne(id);
   }
 
-  @Mutation(() => User)
-  updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.usersService.update(updateUserInput.id, updateUserInput);
+  @Mutation((returns) => User)
+  async updateUser(
+    @Args('updateUserInput') updateUserInput: UpdateUserInput,
+  ): Promise<User> {
+    return await this.usersService.update(updateUserInput);
   }
 
   @Mutation(() => User)
