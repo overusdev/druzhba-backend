@@ -36,6 +36,8 @@ type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  removeManyUsers(input: [UpdateUserInput!]!): [User!]!
+  removeUsers(ids: [Int!]!): User!
 }
 
 input CreatePetInput {
@@ -52,12 +54,22 @@ input UpdatePetInput {
 input CreateUserInput {
   name: String!
   surname: String!
-  patronymic: String
+  patronymic: String!
+  isAdmin: Boolean
+  area: String!
+  phone: String!
+  password: String!
+  role: String!
 }
 
 input UpdateUserInput {
   name: String
   surname: String
   patronymic: String
+  isAdmin: Boolean
+  area: String
+  phone: String
+  password: String
+  role: String
   id: Int!
 }

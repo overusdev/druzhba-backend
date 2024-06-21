@@ -11,6 +11,21 @@ export class CreateUserInput {
   @Field()
   surname: string;
 
-  @Field({ nullable: true })
+  @Field()
   patronymic: string;
+
+  @Field({ nullable: true })
+  isAdmin?: boolean;
+
+  @Field()
+  area: string;
+
+  @Field()
+  phone: string;
+
+  @Field()
+  password: string;
+
+  @Field()
+  role: string;
 }

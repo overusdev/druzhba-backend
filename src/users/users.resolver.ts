@@ -34,4 +34,21 @@ export class UsersResolver {
   removeUser(@Args('id', { type: () => Int }) id: number) {
     return this.usersService.remove(id);
   }
+
+  @Mutation(() => [User])
+  async removeManyUsers(
+    @Args({ name: 'input', type: () => [UpdateUserInput] })
+    input: UpdateUserInput[],
+  ) {
+    console.log('UpdatePetInput', input);
+    for await (const key of input) {
+      console.log(key.id);
+      this.usersService.remove(key.id);
+    }
+  }
+
+  @Mutation(() => User)
+  async removeUsers(@Args('ids', { type: () => [Int] }) ids: number[]) {
+    return this.usersService.removeByIds(ids);
+  }
 }
