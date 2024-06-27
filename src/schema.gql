@@ -20,11 +20,20 @@ type User {
   role: String
 }
 
+type News {
+  id: Int
+  name: String
+  date: String
+  theme: String
+}
+
 type Query {
   pets(take: Int!): [Pet!]!
   getPet(id: Int!): Pet!
   users(take: Int!): [User!]!
   user(id: Int!): User!
+  news(take: Int!): [News!]!
+  new(id: Int!): News!
 }
 
 type Mutation {
@@ -38,6 +47,10 @@ type Mutation {
   removeUser(id: Int!): User!
   removeManyUsers(input: [UpdateUserInput!]!): [User!]!
   removeUsers(ids: [Int!]!): User!
+  createNews(createNewsInput: CreateNewsInput!): News!
+  updateNews(updateNewsInput: UpdateNewsInput!): News!
+  removeNews(id: Int!): News!
+  removeNewsByIds(ids: [Int!]!): News!
 }
 
 input CreatePetInput {
@@ -71,5 +84,18 @@ input UpdateUserInput {
   phone: String
   password: String
   role: String
+  id: Int!
+}
+
+input CreateNewsInput {
+  name: String
+  date: String
+  theme: String
+}
+
+input UpdateNewsInput {
+  name: String
+  date: String
+  theme: String
   id: Int!
 }
