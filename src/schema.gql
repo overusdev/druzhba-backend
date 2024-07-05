@@ -27,6 +27,13 @@ type News {
   theme: String
 }
 
+type Ads {
+  id: Int
+  name: String
+  date: String
+  theme: String
+}
+
 type Query {
   pets(take: Int!): [Pet!]!
   getPet(id: Int!): Pet!
@@ -34,6 +41,8 @@ type Query {
   user(id: Int!): User!
   news(take: Int!): [News!]!
   new(id: Int!): News!
+  ads(take: Int!): [Ads!]!
+  ad(id: Int!): Ads!
 }
 
 type Mutation {
@@ -51,6 +60,10 @@ type Mutation {
   updateNews(updateNewsInput: UpdateNewsInput!): News!
   removeNews(id: Int!): News!
   removeNewsByIds(ids: [Int!]!): News!
+  createAds(createAdInput: CreateAdInput!): Ads!
+  updateAds(updateAdInput: UpdateAdInput!): Ads!
+  removeAds(id: Int!): Ads!
+  removeAdByIds(ids: [Int!]!): Ads!
 }
 
 input CreatePetInput {
@@ -94,6 +107,19 @@ input CreateNewsInput {
 }
 
 input UpdateNewsInput {
+  name: String
+  date: String
+  theme: String
+  id: Int!
+}
+
+input CreateAdInput {
+  name: String
+  date: String
+  theme: String
+}
+
+input UpdateAdInput {
   name: String
   date: String
   theme: String
