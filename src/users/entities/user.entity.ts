@@ -42,4 +42,8 @@ export class User {
   @Column({ nullable: true })
   @Field({ nullable: true })
   role: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  note: string;
 }

@@ -18,6 +18,7 @@ type User {
   phone: String
   password: String
   role: String
+  note: String
 }
 
 type News {
@@ -86,6 +87,7 @@ input CreateUserInput {
   phone: String!
   password: String!
   role: String!
+  note: String!
 }
 
 input UpdateUserInput {
@@ -97,6 +99,7 @@ input UpdateUserInput {
   phone: String
   password: String
   role: String
+  note: String
   id: Int!
 }
 

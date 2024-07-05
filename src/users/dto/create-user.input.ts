@@ -28,4 +28,7 @@ export class CreateUserInput {
 
   @Field()
   role: string;
+
+  @Field()
+  note: string;
 }
