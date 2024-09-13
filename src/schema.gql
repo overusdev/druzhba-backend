@@ -40,6 +40,8 @@ type Query {
   getPet(id: Int!): Pet!
   users(take: Int!): [User!]!
   user(id: Int!): User!
+  userByPhone(phone: String!): User!
+  userByPassword(password: String!): User!
   news(take: Int!): [News!]!
   new(id: Int!): News!
   ads(take: Int!): [Ads!]!
