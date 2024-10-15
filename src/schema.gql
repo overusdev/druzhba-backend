@@ -35,10 +35,16 @@ type Ads {
   theme: String
 }
 
+type AuthResponse {
+  access_token: String!
+  name: String!
+}
+
 type Query {
   pets(take: Int!): [Pet!]!
   getPet(id: Int!): Pet!
   users(take: Int!): [User!]!
+  userByName(name: String!): User!
   user(id: Int!): User!
   userByPhone(phone: String!): User!
   userByPassword(password: String!): User!
@@ -67,6 +73,7 @@ type Mutation {
   updateAds(updateAdInput: UpdateAdInput!): Ads!
   removeAds(id: Int!): Ads!
   removeAdByIds(ids: [Int!]!): Ads!
+  login(authInput: AuthInput!): AuthResponse!
 }
 
 input CreatePetInput {
@@ -129,4 +136,9 @@ input UpdateAdInput {
   date: String
   theme: String
   id: Int!
+}
+
+input AuthInput {
+  name: String!
+  password: String!
 }

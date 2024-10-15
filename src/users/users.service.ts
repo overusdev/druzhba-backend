@@ -31,6 +31,10 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id: id }); // SELECT user by id
   }
 
+  async find(name): Promise<User> {
+    return this.usersRepository.findOneBy({ name: name }); // SELECT user by id
+  }
+
   async findOneByPhone(phone): Promise<User> {
     return this.usersRepository.findOneBy({ phone: phone }); // SELECT user by phone
   }
