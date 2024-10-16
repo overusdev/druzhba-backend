@@ -38,7 +38,6 @@ export class UsersService {
   async findOneByPassword(password): Promise<User> {
     return this.usersRepository.findOneBy({ password: password }); // SELECT user by phone
   }
-
   async remove(id: number): Promise<number | string> {
     await this.usersRepository.delete({ id: id });
     const message = `User with id ${id} was removed`;

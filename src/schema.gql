@@ -16,7 +16,6 @@ type User {
   isAdmin: Boolean
   area: String
   phone: String
-  password: String
   role: String
   note: String
 }
@@ -33,6 +32,11 @@ type Ads {
   name: String
   date: String
   theme: String
+}
+
+type AuthType {
+  user: User!
+  token: String!
 }
 
 type Query {
@@ -67,6 +71,7 @@ type Mutation {
   updateAds(updateAdInput: UpdateAdInput!): Ads!
   removeAds(id: Int!): Ads!
   removeAdByIds(ids: [Int!]!): Ads!
+  login(data: AuthInput!): AuthType!
 }
 
 input CreatePetInput {
@@ -129,4 +134,9 @@ input UpdateAdInput {
   date: String
   theme: String
   id: Int!
+}
+
+input AuthInput {
+  phone: String!
+  password: String!
 }
