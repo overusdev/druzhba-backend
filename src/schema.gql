@@ -16,6 +16,7 @@ type User {
   isAdmin: Boolean
   area: String
   phone: String
+  password: String
   role: String
   note: String
 }
@@ -93,6 +94,7 @@ input CreateUserInput {
   area: String!
   phone: String!
   password: String!
+  bcryptpassword: String!
   role: String!
   note: String!
 }
@@ -105,6 +107,7 @@ input UpdateUserInput {
   area: String
   phone: String
   password: String
+  bcryptpassword: String
   role: String
   note: String
   id: Int!

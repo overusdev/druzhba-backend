@@ -15,11 +15,12 @@ export class AuthService {
 
   async validateUser(data: AuthInput): Promise<AuthType> {
     const user = await this._userService.findOneByPhone(data.phone);
-    // const validPassword = compareSync(data.password, user.password); // TODO use password by bcrypt
-    const validPassword = data.password === user.password;
+    const validPassword = compareSync(data.password, user.bcryptpassword);
 
     if (!validPassword) {
       throw new UnauthorizedException('Incorect Password');
+    } else {
+      console.log('GOOD! Y are Auth!');
     }
 
     const token = await this.jwtToken(user);

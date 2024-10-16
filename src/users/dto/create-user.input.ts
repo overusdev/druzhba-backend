@@ -27,6 +27,9 @@ export class CreateUserInput {
   password: string;
 
   @Field()
+  bcryptpassword: string;
+
+  @Field()
   role: string;
 
   @Field()

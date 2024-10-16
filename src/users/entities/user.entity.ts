@@ -36,11 +36,15 @@ export class User {
   @Field({ nullable: true })
   phone: string;
 
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  password: string;
+
   @Column({
     transformer: hashPasswordTransform,
   })
   @HideField()
-  password: string;
+  bcryptpassword: string;
 
   @Column({ nullable: true })
   @Field({ nullable: true })
