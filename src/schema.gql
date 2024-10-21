@@ -17,6 +17,7 @@ type User {
   area: String
   phone: String
   password: String
+  bcryptpassword: String
   role: String
   note: String
 }

@@ -43,7 +43,7 @@ export class User {
   @Column({
     transformer: hashPasswordTransform,
   })
-  @HideField()
+  @Field({ nullable: true })
   bcryptpassword: string;
 
   @Column({ nullable: true })
