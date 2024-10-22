@@ -12,7 +12,8 @@ export class AuthResolver {
     @Context('res') res: any,
   ): Promise<AuthType> {
     const response = await this._authService.validateUser(data);
-    const expires = new Date(Date.now() + 150 * 24 * 60 * 60 * 1000);
+    // const expires = new Date(Date.now() + 150 * 24 * 60 * 60 * 1000);
+    const expires = new Date(Date.now() + 15 * 60 * 24 * 24); // ~ 10 minutes
 
     res.cookie('dr', response.token, {
       httpOnly: true,

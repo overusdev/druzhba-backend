@@ -16,13 +16,11 @@ export class AdsResolver {
     return this.adsService.create(createAdInput);
   }
 
-  @UseGuards(GqlAuthGuard)
   @Query((returns) => [Ads])
   ads(@Args('take', { type: () => Int }) take: number): Promise<Ads[]> {
     return this.adsService.findAll(take);
   }
 
-  @UseGuards(GqlAuthGuard)
   @Query(() => Ads, { name: 'ad' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.adsService.findOne(id);

@@ -14,7 +14,8 @@ import { JwtStrategy } from './jwt.strategy';
       useFactory: () => ({
         secret: process.env.JWT_SECRET,
         signOptions: {
-          expiresIn: '120s', // Adjust as needed on 15m
+          // expiresIn: '120s', // Adjust as needed on 15m
+          expiresIn: '12s', // Adjust as needed on 15m
         },
       }),
     }),

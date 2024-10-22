@@ -16,13 +16,11 @@ export class NewsResolver {
     return this.newsService.create(createNewsInput);
   }
 
-  @UseGuards(GqlAuthGuard)
   @Query((returns) => [News])
   news(@Args('take', { type: () => Int }) take: number): Promise<News[]> {
     return this.newsService.findAll(take);
   }
 
-  @UseGuards(GqlAuthGuard)
   @Query(() => News, { name: 'new' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.newsService.findOne(id);
