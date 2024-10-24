@@ -10,6 +10,7 @@ import { join } from 'path';
 import { UsersModule } from './users/users.module';
 import { NewsModule } from './news/news.module';
 import { AdsModule } from './ads/ads.module';
+import { AuthModule } from './auth/auth.module';
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 
@@ -21,11 +22,18 @@ console.log('process.env.NODE_ENV', process.env.NODE_ENV);
     GraphQLModule.forRoot({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      // context: ({ req }) => ({ req }), // For graphQL to have access to requests since auth has been implemented.
+      context: ({ req, res }) => ({ req, res }), // For graphQL to have access to requests since auth has been implemented.
       cors: {
         credentials: true,
         origin: true,
       },
-      playground: process.env.NODE_ENV === 'production' ? false : true,
+      // playground: process.env.NODE_ENV === 'production' ? false : true,
+      playground: {
+        settings: {
+          'request.credentials': 'include',
+        },
+      },
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -42,6 +50,7 @@ console.log('process.env.NODE_ENV', process.env.NODE_ENV);
     UsersModule,
     NewsModule,
     AdsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

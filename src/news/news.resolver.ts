@@ -1,3 +1,5 @@
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '../auth/auth.guard';
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { NewsService } from './news.service';
 import { News } from './entities/news.entity';
@@ -8,6 +10,7 @@ import { UpdateNewsInput } from './dto/update-news.input';
 export class NewsResolver {
   constructor(private readonly newsService: NewsService) {}
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => News)
   createNews(@Args('createNewsInput') createNewsInput: CreateNewsInput) {
     return this.newsService.create(createNewsInput);
@@ -23,6 +26,7 @@ export class NewsResolver {
     return this.newsService.findOne(id);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation((returns) => News)
   async updateNews(
     @Args('updateNewsInput') updateNewsInput: UpdateNewsInput,
@@ -30,11 +34,13 @@ export class NewsResolver {
     return await this.newsService.update(updateNewsInput);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => News)
   removeNews(@Args('id', { type: () => Int }) id: number) {
     return this.newsService.remove(id);
   }
 
+  @UseGuards(GqlAuthGuard)
   @Mutation(() => News)
   async removeNewsByIds(@Args('ids', { type: () => [Int] }) ids: number[]) {
     return this.newsService.removeByIds(ids);
