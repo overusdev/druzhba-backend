@@ -5,6 +5,7 @@ import { User } from '../users/entities/user.entity';
 import { UsersService } from '../users/users.service';
 import { AuthInput } from './dto/auth.input';
 import { AuthType } from './dto/auth.type';
+import { protectToken } from 'src/common/helpers/protectToken';
 
 @Injectable()
 export class AuthService {
@@ -23,7 +24,8 @@ export class AuthService {
       console.log('GOOD! Y are Auth!');
     }
 
-    const token = await this.jwtToken(user);
+    const getToken = await this.jwtToken(user);
+    const token = getToken ? protectToken({ apiToken: getToken }) : undefined;
 
     return {
       user,
