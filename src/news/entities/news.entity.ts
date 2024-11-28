@@ -19,7 +19,8 @@ export class News {
   @Field({ nullable: true })
   date: string;
 
-  @Column({ nullable: true })
+  // @Column('text', { length: 50000 })
+  @Column('text')
   @Field({ nullable: true })
   theme: string;
 }

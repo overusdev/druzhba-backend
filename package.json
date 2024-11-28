@@ -22,6 +22,7 @@
   "dependencies": {
     "@apollo/server": "^4.6.0",
     "@nestjs/apollo": "^11.0.4",
+    "@nestjs/class-validator": "^0.13.4",
     "@nestjs/common": "^9.0.0",
     "@nestjs/config": "^2.3.4",
     "@nestjs/core": "^9.0.0",
@@ -33,6 +34,7 @@
     "@nestjs/typeorm": "^9.0.1",
     "apollo-server-express": "^3.12.0",
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
     "cookie-parser": "^1.4.7",
     "graphql": "^16.6.0",
     "graphql-tools": "^8.3.20",
