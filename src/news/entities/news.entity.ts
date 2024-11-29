@@ -19,8 +19,13 @@ export class News {
   @Field({ nullable: true })
   date: string;
 
-  // @Column('text', { length: 50000 })
-  @Column('text')
+  // @Column({
+  //   transformer: {
+  //     to: (value: string) => Buffer.from(value),
+  //     from: (value: Buffer) => value.toString(),
+  //   },
+  // })
+  @Column('longtext')
   @Field({ nullable: true })
   theme: string;
 }
