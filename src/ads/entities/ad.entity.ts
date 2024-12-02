@@ -19,7 +19,7 @@ export class Ads {
   @Field({ nullable: true })
   date: string;
 
-  @Column({ nullable: true })
+  @Column('longtext')
   @Field({ nullable: true })
   theme: string;
 }
