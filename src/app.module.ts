@@ -11,6 +11,7 @@ import { UsersModule } from './users/users.module';
 import { NewsModule } from './news/news.module';
 import { AdsModule } from './ads/ads.module';
 import { AuthModule } from './auth/auth.module';
+import { ContactsModule } from './contacts/contacts.module';
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 
@@ -51,6 +52,7 @@ console.log('process.env.NODE_ENV', process.env.NODE_ENV);
     NewsModule,
     AdsModule,
     AuthModule,
+    ContactsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

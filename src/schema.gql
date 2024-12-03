@@ -41,6 +41,13 @@ type AuthType {
   token: String!
 }
 
+type Contact {
+  id: Int
+  date: String
+  updated: String
+  theme: String
+}
+
 type Query {
   pets(take: Int!): [Pet!]!
   getPet(id: Int!): Pet!
@@ -52,6 +59,7 @@ type Query {
   new(id: Int!): News!
   ads(take: Int!): [Ads!]!
   ad(id: Int!): Ads!
+  contact(id: Int!): Contact!
 }
 
 type Mutation {
@@ -74,6 +82,8 @@ type Mutation {
   removeAds(id: Int!): Ads!
   removeAdByIds(ids: [Int!]!): Ads!
   login(data: AuthInput!): AuthType!
+  createContact(createContactInput: CreateContactInput!): Contact!
+  updateContact(updateContactInput: UpdateContactInput!): Contact!
 }
 
 input CreatePetInput {
@@ -143,4 +153,17 @@ input UpdateAdInput {
 input AuthInput {
   phone: String!
   password: String!
+}
+
+input CreateContactInput {
+  date: String
+  updated: String
+  theme: String
+}
+
+input UpdateContactInput {
+  date: String
+  updated: String
+  theme: String
+  id: Int!
 }
