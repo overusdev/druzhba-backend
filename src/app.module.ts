@@ -12,6 +12,7 @@ import { NewsModule } from './news/news.module';
 import { AdsModule } from './ads/ads.module';
 import { AuthModule } from './auth/auth.module';
 import { ContactsModule } from './contacts/contacts.module';
+import { DocsModule } from './docs/docs.module';
 
 console.log('process.env.NODE_ENV', process.env.NODE_ENV);
 
@@ -53,6 +54,7 @@ console.log('process.env.NODE_ENV', process.env.NODE_ENV);
     AdsModule,
     AuthModule,
     ContactsModule,
+    DocsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

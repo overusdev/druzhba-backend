@@ -48,6 +48,14 @@ type Contact {
   theme: String
 }
 
+type Doc {
+  id: Int
+  date: String
+  updated: String
+  title: String
+  theme: String
+}
+
 type Query {
   pets(take: Int!): [Pet!]!
   getPet(id: Int!): Pet!
@@ -60,6 +68,8 @@ type Query {
   ads(take: Int!): [Ads!]!
   ad(id: Int!): Ads!
   contact(id: Int!): Contact!
+  docs(take: Int!): [Doc!]!
+  doc(id: Int!): Doc!
 }
 
 type Mutation {
@@ -84,6 +94,10 @@ type Mutation {
   login(data: AuthInput!): AuthType!
   createContact(createContactInput: CreateContactInput!): Contact!
   updateContact(updateContactInput: UpdateContactInput!): Contact!
+  createDoc(createDocInput: CreateDocInput!): Doc!
+  updateDoc(updateDocInput: UpdateDocInput!): Doc!
+  removeDoc(id: Int!): Doc!
+  removeDocsByIds(ids: [Int!]!): Doc!
 }
 
 input CreatePetInput {
@@ -164,6 +178,21 @@ input CreateContactInput {
 input UpdateContactInput {
   date: String
   updated: String
+  theme: String
+  id: Int!
+}
+
+input CreateDocInput {
+  date: String
+  updated: String
+  title: String
+  theme: String
+}
+
+input UpdateDocInput {
+  date: String
+  updated: String
+  title: String
   theme: String
   id: Int!
 }
