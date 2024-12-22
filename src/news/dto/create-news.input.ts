@@ -12,5 +12,8 @@ export class CreateNewsInput {
   date: string;
 
   @Field({ nullable: true })
+  updated: string;
+
+  @Field({ nullable: true })
   theme: string;
 }

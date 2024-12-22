@@ -19,6 +19,10 @@ export class News {
   @Field({ nullable: true })
   date: string;
 
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  updated: string;
+
   // @Column({
   //   transformer: {
   //     to: (value: string) => Buffer.from(value),
