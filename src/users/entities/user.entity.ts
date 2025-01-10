@@ -18,6 +18,14 @@ export class User {
 
   @Column({ nullable: true })
   @Field({ nullable: true })
+  date: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
+  updated: string;
+
+  @Column({ nullable: true })
+  @Field({ nullable: true })
   surname: string;
 
   @Column({ nullable: true })

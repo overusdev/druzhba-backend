@@ -21,5 +21,9 @@ export class Ads {
 
   @Column({ nullable: true })
   @Field({ nullable: true })
+  updated: string;
+
+  @Column('longtext')
+  @Field({ nullable: true })
   theme: string;
 }

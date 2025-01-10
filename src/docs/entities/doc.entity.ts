@@ -1,19 +1,15 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 @ObjectType()
-export class News {
+export class Doc {
   @PrimaryGeneratedColumn({
     type: 'bigint',
-    name: 'news_id',
+    name: 'doc_id',
   })
   @Field((type) => Int, { nullable: true })
   id: number;
-
-  @Column({ nullable: true })
-  @Field({ nullable: true })
-  name: string;
 
   @Column({ nullable: true })
   @Field({ nullable: true })
@@ -23,12 +19,10 @@ export class News {
   @Field({ nullable: true })
   updated: string;
 
-  // @Column({
-  //   transformer: {
-  //     to: (value: string) => Buffer.from(value),
-  //     from: (value: Buffer) => value.toString(),
-  //   },
-  // })
+  @Column()
+  @Field({ nullable: true })
+  title: string;
+
   @Column('longtext')
   @Field({ nullable: true })
   theme: string;

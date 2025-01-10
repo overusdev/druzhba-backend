@@ -11,6 +11,8 @@ type Pet {
 type User {
   id: Int
   name: String
+  date: String
+  updated: String
   surname: String
   patronymic: String
   isAdmin: Boolean
@@ -26,6 +28,7 @@ type News {
   id: Int
   name: String
   date: String
+  updated: String
   theme: String
 }
 
@@ -33,12 +36,28 @@ type Ads {
   id: Int
   name: String
   date: String
+  updated: String
   theme: String
 }
 
 type AuthType {
   user: User!
   token: String!
+}
+
+type Contact {
+  id: Int
+  date: String
+  updated: String
+  theme: String
+}
+
+type Doc {
+  id: Int
+  date: String
+  updated: String
+  title: String
+  theme: String
 }
 
 type Query {
@@ -52,6 +71,9 @@ type Query {
   new(id: Int!): News!
   ads(take: Int!): [Ads!]!
   ad(id: Int!): Ads!
+  contact(id: Int!): Contact!
+  docs(take: Int!): [Doc!]!
+  doc(id: Int!): Doc!
 }
 
 type Mutation {
@@ -74,6 +96,12 @@ type Mutation {
   removeAds(id: Int!): Ads!
   removeAdByIds(ids: [Int!]!): Ads!
   login(data: AuthInput!): AuthType!
+  createContact(createContactInput: CreateContactInput!): Contact!
+  updateContact(updateContactInput: UpdateContactInput!): Contact!
+  createDoc(createDocInput: CreateDocInput!): Doc!
+  updateDoc(updateDocInput: UpdateDocInput!): Doc!
+  removeDoc(id: Int!): Doc!
+  removeDocsByIds(ids: [Int!]!): Doc!
 }
 
 input CreatePetInput {
@@ -90,6 +118,8 @@ input UpdatePetInput {
 input CreateUserInput {
   name: String!
   surname: String!
+  date: String
+  updated: String
   patronymic: String!
   isAdmin: Boolean
   area: String!
@@ -103,6 +133,8 @@ input CreateUserInput {
 input UpdateUserInput {
   name: String
   surname: String
+  date: String
+  updated: String
   patronymic: String
   isAdmin: Boolean
   area: String
@@ -117,12 +149,14 @@ input UpdateUserInput {
 input CreateNewsInput {
   name: String
   date: String
+  updated: String
   theme: String
 }
 
 input UpdateNewsInput {
   name: String
   date: String
+  updated: String
   theme: String
   id: Int!
 }
@@ -130,12 +164,14 @@ input UpdateNewsInput {
 input CreateAdInput {
   name: String
   date: String
+  updated: String
   theme: String
 }
 
 input UpdateAdInput {
   name: String
   date: String
+  updated: String
   theme: String
   id: Int!
 }
@@ -143,4 +179,32 @@ input UpdateAdInput {
 input AuthInput {
   phone: String!
   password: String!
+}
+
+input CreateContactInput {
+  date: String
+  updated: String
+  theme: String
+}
+
+input UpdateContactInput {
+  date: String
+  updated: String
+  theme: String
+  id: Int!
+}
+
+input CreateDocInput {
+  date: String
+  updated: String
+  title: String
+  theme: String
+}
+
+input UpdateDocInput {
+  date: String
+  updated: String
+  title: String
+  theme: String
+  id: Int!
 }

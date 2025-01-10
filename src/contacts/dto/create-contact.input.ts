@@ -1,13 +1,7 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
 
 @InputType()
-export class CreateNewsInput {
-  // @Field(() => Int, { description: 'Example field (placeholder)' })
-  // user_id: string;
-
-  @Field({ nullable: true })
-  name: string;
-
+export class CreateContactInput {
   @Field({ nullable: true })
   date: string;
 

@@ -11,6 +11,12 @@ export class CreateUserInput {
   @Field()
   surname: string;
 
+  @Field({ nullable: true })
+  date: string;
+
+  @Field({ nullable: true })
+  updated: string;
+
   @Field()
   patronymic: string;
 

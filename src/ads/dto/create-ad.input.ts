@@ -9,5 +9,8 @@ export class CreateAdInput {
   date: string;
 
   @Field({ nullable: true })
+  updated: string;
+
+  @Field({ nullable: true })
   theme: string;
 }
