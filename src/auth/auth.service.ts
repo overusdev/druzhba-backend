@@ -27,6 +27,10 @@ export class AuthService {
     const getToken = await this.jwtToken(user);
     const token = getToken ? protectToken({ apiToken: getToken }) : undefined;
 
+    console.log('USER', user);
+    console.log('GETTOKEN', getToken);
+    console.log('...TOKEN...', token);
+
     return {
       user,
       token,
@@ -39,6 +43,8 @@ export class AuthService {
       sub: user.id,
       isAdmin: user.isAdmin,
     };
+
+    console.log('...PAYLOAD...', payload);
 
     return this._jwtService.signAsync(payload);
   }
