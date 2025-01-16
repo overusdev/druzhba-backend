@@ -2,7 +2,12 @@ import { Field, Int, ObjectType, HideField } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { hashPasswordTransform } from '../../common/helpers/crypto';
 
-@Entity()
+@Entity({
+  orderBy: {
+    isAdmin: 'DESC',
+    id: 'DESC',
+  },
+})
 @ObjectType()
 export class User {
   @PrimaryGeneratedColumn({

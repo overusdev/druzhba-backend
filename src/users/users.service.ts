@@ -20,9 +20,10 @@ export class UsersService {
   async findAll(take: number): Promise<User[]> {
     const getQuery = {
       take,
-      order: {
-        id: 'DESC',
-      },
+      // order: {
+      //   id: 'DESC',
+      //   isAdmin: 'DESC',
+      // },
     };
     return this.usersRepository.find(getQuery as FindManyOptions); // SELECT * users
   }
