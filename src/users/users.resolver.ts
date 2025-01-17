@@ -23,6 +23,12 @@ export class UsersResolver {
   }
 
   @UseGuards(GqlAuthGuard)
+  @Query(() => Int)
+  async usersCount() {
+    return this.usersService.getUsersCount();
+  }
+
+  @UseGuards(GqlAuthGuard)
   @Query(() => User, { name: 'user' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.usersService.findOne(id);

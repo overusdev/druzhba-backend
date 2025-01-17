@@ -27,6 +27,10 @@ export class NewsService {
     return this.newsRepository.find(getQuery as FindManyOptions); // SELECT * users
   }
 
+  async getNewsCount() {
+    return this.newsRepository.count();
+  }
+
   async findOne(id): Promise<News> {
     return this.newsRepository.findOneBy({ id: id }); // SELECT user by id
   }

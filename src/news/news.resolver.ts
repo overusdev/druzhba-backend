@@ -21,6 +21,12 @@ export class NewsResolver {
     return this.newsService.findAll(take);
   }
 
+  @UseGuards(GqlAuthGuard)
+  @Query(() => Int)
+  async newsCount() {
+    return this.newsService.getNewsCount();
+  }
+
   @Query(() => News, { name: 'new' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.newsService.findOne(id);

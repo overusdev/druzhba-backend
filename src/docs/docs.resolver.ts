@@ -21,6 +21,12 @@ export class DocsResolver {
     return this.docsService.findAll(take);
   }
 
+  @UseGuards(GqlAuthGuard)
+  @Query(() => Int)
+  async docsCount() {
+    return this.docsService.getDocsCount();
+  }
+
   @Query(() => Doc, { name: 'doc' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.docsService.findOne(id);

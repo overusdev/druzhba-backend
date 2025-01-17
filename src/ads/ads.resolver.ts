@@ -21,6 +21,12 @@ export class AdsResolver {
     return this.adsService.findAll(take);
   }
 
+  @UseGuards(GqlAuthGuard)
+  @Query(() => Int)
+  async adsCount() {
+    return this.adsService.getAdsCount();
+  }
+
   @Query(() => Ads, { name: 'ad' })
   findOne(@Args('id', { type: () => Int }) id: number) {
     return this.adsService.findOne(id);

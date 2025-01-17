@@ -25,6 +25,10 @@ export class AdsService {
     return this.adsRepository.find(getQuery as FindManyOptions);
   }
 
+  async getAdsCount() {
+    return this.adsRepository.count();
+  }
+
   async findOne(id): Promise<Ads> {
     return this.adsRepository.findOneBy({ id: id });
   }

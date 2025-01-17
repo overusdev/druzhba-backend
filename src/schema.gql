@@ -64,15 +64,19 @@ type Query {
   pets(take: Int!): [Pet!]!
   getPet(id: Int!): Pet!
   users(take: Int!): [User!]!
+  usersCount: Int!
   user(id: Int!): User!
   userByPhone(phone: String!): User!
   userByPassword(password: String!): User!
   news(take: Int!): [News!]!
+  newsCount: Int!
   new(id: Int!): News!
   ads(take: Int!): [Ads!]!
+  adsCount: Int!
   ad(id: Int!): Ads!
   contact(id: Int!): Contact!
   docs(take: Int!): [Doc!]!
+  docsCount: Int!
   doc(id: Int!): Doc!
 }
 

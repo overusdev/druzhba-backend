@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindManyOptions, In, Repository } from 'typeorm';
+import { FindManyOptions, FindOptionsWhere, In, Repository } from 'typeorm';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 
@@ -26,6 +26,10 @@ export class UsersService {
       // },
     };
     return this.usersRepository.find(getQuery as FindManyOptions); // SELECT * users
+  }
+
+  async getUsersCount() {
+    return this.usersRepository.count();
   }
 
   async findOne(id): Promise<User> {

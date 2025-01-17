@@ -25,6 +25,10 @@ export class DocsService {
     return this.docRepository.find(getQuery as FindManyOptions); // SELECT * docs
   }
 
+  async getDocsCount() {
+    return this.docRepository.count();
+  }
+
   async findOne(id): Promise<Doc> {
     return this.docRepository.findOneBy({ id: id });
   }
